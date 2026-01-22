@@ -24,8 +24,10 @@ export class SignupPage {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.signupButton.click();
+    await expect(this.page.locator(".success-messages")).toContainText(
+      "Registration successful",
+    );
     await this.page.waitForLoadState("networkidle");
-    await expect(this.page.locator("h1")).toContainText("Sign in");
     
   }
 }

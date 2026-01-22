@@ -1,6 +1,5 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { BASE_URL } from "../config/config";
-
 
 export class UserProfilePage {
   readonly page: Page;
@@ -10,13 +9,16 @@ export class UserProfilePage {
   }
 
   async goto(username: string) {
-    console.log(`${BASE_URL}/#/profile/${username}`);
     await this.page.goto(`${BASE_URL}/#/profile/${username}`);
   }
 
   async followUser() {
-    await this.page.locator('.btn-outline-secondary').click();
+    await expect(this.page.locator(".btn-outline-secondary")).toBeVisible();
+    await this.page.locator(".btn-outline-secondary").click();
+    await this.page.waitForSelector('.btn-secondary');
+    await expect(this.page.locator(".btn-secondary")).toBeVisible();
   }
+
 
   async unfollowUser() {
     await this.page.locator('.btn-secondary').click();

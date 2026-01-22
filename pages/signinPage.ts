@@ -21,7 +21,8 @@ export class SigninPage {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.signinButton.click();
-  }
+    await this.page.waitForLoadState("networkidle");
+    await this.page.waitForSelector('a[href="#/my-profile"]'); }
 
   async signout() {
     await this.page.locator('a[href="#/settings"]').click();
