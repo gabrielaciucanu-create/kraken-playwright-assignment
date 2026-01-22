@@ -1,0 +1,11 @@
+baseUrl: http://localhost:4200
+# alternateBaseUrl: https://demo.realworld.show
+users:
+  userA:
+    username: testUser1
+    email: testUser1@test.com
+    password: test123
+  userB:
+    username: testUser2
+    email: testUser2@test.com
+    password: test123
