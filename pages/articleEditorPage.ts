@@ -29,9 +29,19 @@ export class ArticleEditorPage {
 
   async editArticle(title: string, about: string, body: string, tags: string[]) {
     console.log("Filling article form with title:", title);
+    await this.titleInput.selectText();
     await this.titleInput.fill(title);
+    await expect(this.titleInput).toHaveValue(title);
+
+    await this.aboutInput.selectText;
     await this.aboutInput.fill(about);
+    await expect(this.aboutInput).toHaveValue(about);
+
+    await this.bodyInput.selectText();
     await this.bodyInput.fill(body);
+    await expect(this.bodyInput).toHaveValue(body);
+
+    await this.tagsInput.fill("");
     for (const tag of tags) {
       await this.tagsInput.fill(tag);
       await this.tagsInput.press("Enter");

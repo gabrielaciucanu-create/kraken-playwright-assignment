@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { USER_A } from "../../config/config";
 import { SigninPage } from "../../pages/signinPage";
-import { ArticleEditorPage } from "../../pages/artcleEditorPage";
+import { ArticleEditorPage } from "../../pages/articleEditorPage";
 import { SignupPage } from "../../pages/signupPage";
 const rand = Math.floor(Math.random() * 10000);
 
@@ -63,6 +63,8 @@ test.describe("Write Article", () => {
       .filter({ hasText: `Test title${rand}` })
       .click();
     await page.getByRole("button", { name: "Edit Article" }).first().click();
+    await page.waitForLoadState("networkidle");
+
     await articleEditorPage.editArticle(
       `Edited title${rand}`,
       "edited description",
